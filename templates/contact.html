@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="contact-hero">
+    <div class="contact-hero-content">
+        <h1>FOR BOOKING AND CONSULTATION <br>
+            Contact us anytime!</h1>
+        <p>Get in touch with House of Rayoor, book custom measurement consultations, or send us an inquiry directly below.</p>
+    </div>
+</div>
+
+<!-- Main Contact & Measurement Section -->
+<div class="contact-container">
+    <div class="contact-grid">
+        <!-- Direct Contact Details Column -->
+        <div class="contact-cards-col">
+            <a href="https://wa.me/2348134984539" target="_blank" class="contact-card whatsapp-card">
+                <div class="card-icon"><i class="fab fa-whatsapp"></i></div>
+                <div class="card-text">
+                    <h3>WhatsApp Consultation</h3>
+                    <p>Chat directly with our master tailors for instant consultations.</p>
+                    <span class="card-action">Message +234 813 498 4539 &rarr;</span>
+                </div>
+            </a>
+
+            <div class="contact-card">
+                <div class="card-icon"><i class="fas fa-ruler-combined"></i></div>
+                <div class="card-text">
+                    <h3>Custom Measurement Sessions</h3>
+                    <p>In-person & Virtual Fitting Sessions available Monday – Saturday.</p>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="card-text">
+                    <h3>Main Atelier</h3>
+                    <p>House of Rayoor Studio, <br>
+                        17,Allied Street, Ketu - Lagos, <br>
+                        Lagos Nigeria.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Integrated Contact & Measurement Booking Form -->
+        <div class="form-wrapper">
+            <h2>Send an Inquiry / Submit Measurements</h2>
+            <p>Fill out the details below and our team will reach out immediately.</p>
+            <form action="/contact" method="POST" class="styled-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone / WhatsApp Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="e.g. 0xxxxx" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Service Required</label>
+                    <input type="text" id="service" name="service" placeholder="e.g. Bespoke Agbada, Bridal Gown, Custom Fitting">
+                </div>
+                <div class="form-group">
+                    <label for="measurements">Custom Measurements / Specific Notes</label>
+                    <textarea id="measurements" name="message" rows="4" placeholder="Enter Chest, Waist, Length dimensions or inquiry details..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">SUBMIT INQUIRY</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

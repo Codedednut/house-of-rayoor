@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title if page_title else "House of Rayoor - Haute Couture & Bespoke Tailoring" }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <p>✨ FREE SHIPPING ON ORDERS ABOVE ₦100,000 | WITHIN NIGERIA </p>
+    </div>
+
+    <!-- Fashion Nova Style Header -->
+    <header class="navbar">
+        <div class="header-main-row">
+            <!-- Brand Logo & Tagline Wrapper -->
+            <div class="brand-block">
+                <a href="/" class="logo">HOUSE OF RAYOOR</a>
+                <span class="brand-slogan">YOUR SATISFACTION, OUR PRIORITY</span>
+            </div>
+
+            <!-- Audience Tabs -->
+            <div class="main-category-tabs">
+                <a href="/" class="tab-link active">HOME</a>
+                <a href="/collection?q=bespoke" class="tab-link">BESPOKE</a>
+                <a href="/collection?q=traditional" class="tab-link">TRADITIONAL</a>
+                <a href="/collection?q=kiddies" class="tab-link">KIDDIES</a>
+            </div>
+
+            <!-- Expanded Centered Search Bar -->
+            <form action="/" method="GET" class="search-form">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" name="q" placeholder="Search within House of Rayoor..." value="{{ search_query if search_query else '' }}">
+            </form>
+
+            <!-- User Utility Icons -->
+            <div class="header-icons">
+                <a href="/contact" title="Account / Help"><i class="far fa-user"></i></a>
+                <a href="/collection" title="Wishlist"><i class="far fa-heart"></i></a>
+                <a href="/collection" title="Shopping Bag"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+        </div>
+
+        <!-- Sub Navigation Bar -->
+        <nav class="sub-nav-bar">
+            <div class="sub-nav-container">
+                <a href="/collection" class="nav-item highlight">NEW IN</a>
+                <a href="/collection?q=ankara">ANKARA WEAR</a>
+                <a href="/collection?q=gown">DRESSES & GOWNS</a>
+                <a href="/collection?q=agbada">AGBADA & SETS</a>
+                <a href="/collection?q=kaftan">KAFTANS</a>
+                <a href="/bespoke">BESPOKE GALLERY</a>
+                <a href="/contact">CONTACT US</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Classic Footer Format -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>House of Rayoor</h3>
+                <p class="footer-slogan">Your Satisfaction, Our Priority</p>
+                <p>Luxury Bespoke Tailoring & Contemporary African Fashion.</p>
+                <p class="reg-number">Registered Business No: RC-3722115 LLC</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Navigation</h4>
+                <a href="/">Home Page</a>
+                <a href="/collection">Full Collection</a>
+                <a href="/collection?q=">Bespoke Gallery</a>
+                <a href="/contact">Contact Us</a>
+            </div>
+            <div class="footer-socials">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/https://www.facebook.com/profile.php?id=100063771926012" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://tiktok.com/@houseofrayoor" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.me/2348134984539" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 House of Rayoor LLC. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
