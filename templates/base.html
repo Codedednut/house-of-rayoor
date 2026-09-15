@@ -28,10 +28,7 @@
       <span class="tagline">YOUR SATISFACTION, OUR PRIORITY</span>
     </div>
 
-    <!-- Mobile Hamburger Toggle Button -->
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
-
-    <nav class="nav-links" id="navMenu">
+    <nav class="nav-links">
       <a href="{{ url_for('home') }}">HOME</a>
       <a href="{{ url_for('collection') }}">COLLECTION</a>
       <a href="{{ url_for('bespoke') }}">BESPOKE</a>
@@ -167,17 +164,5 @@
             }
         };
     </script>
-    <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const navToggle = document.getElementById('navToggle');
-    const navMenu = document.getElementById('navMenu');
-
-    if (navToggle && navMenu) {
-      navToggle.addEventListener('click', function () {
-        navMenu.classList.toggle('active');
-      });
-    }
-  });
-</script>
 </body>
 </html>
