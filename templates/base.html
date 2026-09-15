@@ -1,129 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>House of Rayoor - Haute Couture</title>
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Main Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}House of Rayoor{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-    <!-- Top Announcement Bar -->
-    <div class="top-bar">
-        <p>FREE SHIPPING ON ORDERS ABOVE ₦100,000 | WITHIN NIGERIA</p>
-    </div>
-<!-- Main Navigation Header -->
-<header class="main-header">
-  <div class="header-container">
-    <div class="brand-logo">
-      <a href="{{ url_for('home') }}">HOUSE OF RAYOOR</a>
-      <span class="tagline">YOUR SATISFACTION, OUR PRIORITY</span>
-    </div>
+  <!-- Main Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="brand-logo">
+        <a href="{{ url_for('index') }}">HOUSE OF RAYOOR</a>
+        <span class="tagline">LUXURY & ELEGANCE</span>
+      </div>
 
-    <nav class="nav-links">
-      <a href="{{ url_for('home') }}">HOME</a>
-      <a href="{{ url_for('collection') }}">COLLECTION</a>
-      <a href="{{ url_for('bespoke') }}">BESPOKE</a>
-      <a href="{{ url_for('contact') }}">CONTACT US</a>
-    </nav>
-  </div>
-</header>
+      <!-- Mobile 3-Line Hamburger Toggle Button -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        &#9776;
+      </button>
 
-            <div class="header-actions">
-                <div class="header-search">
-                    <form action="{{ url_for('collection') }}" method="GET">
-                        <input type="text" name="q" placeholder="Search within House of Rayoor..." value="{{ search_query if search_query else '' }}">
-                        <button type="submit"><i class="fas fa-search"></i></button>
-                    </form>
-                </div>
-                <div class="header-icons">
-                    <a href="#" title="Account"><i class="far fa-user"></i></a>
-                    <a href="#" title="Wishlist"><i class="far fa-heart"></i></a>
-                    <a href="#" title="Cart"><i class="fas fa-shopping-bag"></i></a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Sub Navigation Category Bar -->
-    <nav class="category-bar">
-        <a href="{{ url_for('collection') }}">NEW IN</a>
-        <a href="{{ url_for('collection', q='Ankara') }}">ANKARA WEAR</a>
-        <a href="{{ url_for('collection', q='Dresses') }}">DRESSES & GOWNS</a>
-        <a href="{{ url_for('collection', q='Agbada') }}">AGBADA & SETS</a>
-        <a href="{{ url_for('collection', q='Kaftans') }}">KAFTANS</a>
+      <!-- Main Navigation Links -->
+      <nav class="nav-links" id="navMenu">
+        <a href="{{ url_for('index') }}">HOME</a>
+        <a href="{{ url_for('collection') }}">COLLECTION</a>
         <a href="{{ url_for('bespoke') }}">BESPOKE</a>
-        <a href="{{ url_for('collection') }}">GALLERY</a>
-        <a href="{{ url_for('contact') }}">CONTACT US</a>
-    </nav>
-
-    <!-- Dynamic Main Content -->
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-
-    <!-- Global Image Preview Modal -->
-    <div id="imageModal" class="image-modal">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <img class="modal-content-img" id="modalImg" alt="Preview Image">
-        <div id="modalCaption"></div>
+        <a href="{{ url_for('contact') }}">CONTACT</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-col brand-col">
-                <h3>HOUSE OF RAYOOR</h3>
-                <p class="footer-tagline">YOUR SATISFACTION, OUR PRIORITY</p>
-                <span class="rc-number">RC: 3722115 </span>
-                <p class="footer-desc">Bespoke fashion, luxury traditional wear, and contemporary ready-to-wear designs crafted with precision.</p>
-            </div>
+  <!-- Secondary Category Bar -->
+  <nav class="category-bar">
+    <a href="{{ url_for('collection') }}">NEW IN</a>
+    <a href="{{ url_for('collection', q='Ankara') }}">ANKARA WEAR</a>
+    <a href="{{ url_for('collection', q='Dresses') }}">DRESSES & GOWNS</a>
+    <a href="{{ url_for('collection', q='Agbada') }}">AGBADA & SETS</a>
+    <a href="{{ url_for('collection', q='Kaftans') }}">KAFTANS</a>
+    <a href="{{ url_for('bespoke') }}">BESPOKE</a>
+    <a href="{{ url_for('collection') }}">GALLERY</a>
+    <a href="{{ url_for('contact') }}">CONTACT US</a>
+  </nav>
 
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('collection') }}">Full Collection</a></li>
-                    <li><a href="{{ url_for('bespoke') }}">Bespoke Services</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
-                </ul>
-            </div>
+  <!-- Dynamic Main Content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
 
-            <div class="footer-col">
-                <h4>Customer Care</h4>
-                <ul>
-                    <li><a href="#">Shipping Policy</a></li>
-                    <li><a href="#">Returns & Exchanges</a></li>
-                    <li><a href="#">Size Guide</a></li>
-                    <li><a href="#">FAQs</a></li>
-                </ul>
-            </div>
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-bottom">
+      &copy; 2026 House of Rayoor. All rights reserved.
+    </div>
+  </footer>
 
-            <div class="footer-col social-col">
-                <h4>Connect With Us</h4>
-                <p>Follow us or talk directly to our stylists on WhatsApp:</p>
-                <div class="footer-social-icons">
-                    <a href="https://instagram.com/@houseofrayoor" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://facebook.com/@houseofrayoor" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://tiktok.com/@houseofrayoor" target="_blank"><i class="fab fa-tiktok"></i></a>
-                </div>
-                <a href="https://wa.me/2348134984539" target="_blank" class="footer-wa-btn">
-                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                </a>
-            </div>
-        </div>
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
 
-        <div class="footer-bottom">
-            <p>&copy; 2026 House of Rayoor (RC: 3722115 ). All Rights Reserved.</p>
-        </div>
-    </footer>
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+          navMenu.classList.toggle('active');
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
