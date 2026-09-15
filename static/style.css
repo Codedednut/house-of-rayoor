@@ -697,11 +697,60 @@ body {
   padding: 5px;
 }
 
-/* ==========================================
-   MOBILE CATEGORY BAR HORIZONTAL SCROLL
-   ========================================== */
-/* MOBILE CATEGORY BAR HORIZONTAL SCROLL */
+/* =========================================
+   MOBILE NAVIGATION & CATEGORY BAR STYLES
+   ========================================= */
+
+/* Hide toggle button on desktop */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 26px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Apply mobile overrides */
 @media (max-width: 768px) {
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 10px 15px;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #111111;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+    padding: 15px 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 10px 0;
+    margin: 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  /* Horizontal scrolling category bar */
   .category-bar {
     display: flex !important;
     overflow-x: auto !important;
@@ -715,16 +764,6 @@ body {
     flex-shrink: 0 !important;
   }
 
-  .category-bar::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  /* Prevent category links from shrinking */
-  .category-bar a {
-    flex-shrink: 0 !important;
-  }
-
-  /* Hide scrollbar line on touch devices */
   .category-bar::-webkit-scrollbar {
     display: none !important;
   }
