@@ -1,73 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}House of Rayoor{% endblock %}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-
-  <!-- Main Header -->
-  <header class="main-header">
+<header class="main-header">
     <div class="header-container">
-      <div class="brand-logo">
-        <a href="{{ url_for('home') }}">HOUSE OF RAYOOR</a>
-        <span class="tagline">LUXURY & ELEGANCE</span>
-      </div>
+        <!-- Brand Logo / Title -->
+        <a href="{{ url_for('index') }}" class="brand-logo">HOUSE OF RAYOOR</a>
 
-      <!-- Mobile 3-Line Hamburger Toggle Button -->
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-        &#9776;
-      </button>
+        <!-- Mobile Hamburger Toggle Button -->
+        <button class="hamburger-toggle" id="hamburgerBtn" aria-label="Toggle navigation menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
 
-      <!-- Main Navigation Links -->
-      <nav class="nav-links" id="navMenu">
-        <a href="{{ url_for('home') }}">HOME</a>
-        <a href="{{ url_for('collection') }}">COLLECTION</a>
-        <a href="{{ url_for('bespoke') }}">BESPOKE</a>
-        <a href="{{ url_for('contact') }}">CONTACT</a>
-      </nav>
+        <!-- Navigation Links -->
+        <nav class="nav-menu" id="navMenu">
+            <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+            <a href="{{ url_for('collection') }}" class="nav-link">Collection</a>
+            <a href="{{ url_for('bespoke') }}" class="nav-link">Bespoke</a>
+            <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
+        </nav>
     </div>
-  </header>
+</header>
 
-  <!-- Secondary Category Bar -->
-  <nav class="category-bar">
-    <a href="{{ url_for('collection') }}">NEW IN</a>
-    <a href="{{ url_for('collection') }}">ANKARA WEAR</a>
-    <a href="{{ url_for('collection') }}">DRESSES & GOWNS</a>
-    <a href="{{ url_for('collection') }}">AGBADA & SETS</a>
-    <a href="{{ url_for('collection') }}">KAFTANS</a>
-    <a href="{{ url_for('bespoke') }}">BESPOKE</a>
-    <a href="{{ url_for('collection') }}">GALLERY</a>
-    <a href="{{ url_for('contact') }}">CONTACT US</a>
-  </nav>
+<!-- JavaScript for Mobile Menu Toggle -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
 
-  <!-- Dynamic Main Content -->
-  <main>
-    {% block content %}{% endblock %}
-  </main>
+        if (hamburgerBtn && navMenu) {
+            hamburgerBtn.addEventListener('click', function() {
+                hamburgerBtn.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
 
-  <!-- Footer -->
-  <footer class="main-footer">
-    <div class="footer-bottom">
-      &copy; 2026 House of Rayoor. All rights reserved.
-    </div>
-  </footer>
-
-  <!-- Mobile Menu Toggle Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const navToggle = document.getElementById('navToggle');
-      const navMenu = document.getElementById('navMenu');
-
-      if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function () {
-          navMenu.classList.toggle('active');
-        });
-      }
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburgerBtn.contains(e.target) && !navMenu.contains(e.target)) {
+                    hamburgerBtn.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+        }
     });
-  </script>
-
-</body>
-</html>
+</script>
