@@ -20,21 +20,25 @@
     <div class="top-bar">
         <p>FREE SHIPPING ON ORDERS ABOVE ₦100,000 | WITHIN NIGERIA</p>
     </div>
+<!-- Main Navigation Header -->
+<header class="main-header">
+  <div class="header-container">
+    <div class="brand-logo">
+      <a href="{{ url_for('home') }}">HOUSE OF RAYOOR</a>
+      <span class="tagline">YOUR SATISFACTION, OUR PRIORITY</span>
+    </div>
 
-    <!-- Main Navigation Header -->
-    <header class="main-header">
-        <div class="header-container">
-            <div class="brand-logo">
-                <a href="{{ url_for('home') }}">HOUSE OF RAYOOR</a>
-                <span class="tagline">YOUR SATISFACTION, OUR PRIORITY</span>
-            </div>
+    <!-- Mobile Hamburger Toggle Button -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
 
-            <nav class="nav-links">
-                <a href="{{ url_for('home') }}">HOME</a>
-                <a href="{{ url_for('collection') }}">COLLECTION</a>
-                <a href="{{ url_for('bespoke') }}">BESPOKE</a>
-                <a href="{{ url_for('contact') }}">CONTACT US</a>
-            </nav>
+    <nav class="nav-links" id="navMenu">
+      <a href="{{ url_for('home') }}">HOME</a>
+      <a href="{{ url_for('collection') }}">COLLECTION</a>
+      <a href="{{ url_for('bespoke') }}">BESPOKE</a>
+      <a href="{{ url_for('contact') }}">CONTACT US</a>
+    </nav>
+  </div>
+</header>
 
             <div class="header-actions">
                 <div class="header-search">
@@ -163,5 +167,17 @@
             }
         };
     </script>
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', function () {
+        navMenu.classList.toggle('active');
+      });
+    }
+  });
+</script>
 </body>
 </html>
