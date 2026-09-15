@@ -1,48 +1,9 @@
-/* ==========================================
-   1. GLOBAL STYLES & RESET
-   ========================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9f9;
-    color: #222222;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-main {
-    flex: 1;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* ==========================================
-   2. HEADER & RESPONSIVE NAVBAR
-   ========================================== */
+/* Header & Desktop Bar */
 .main-header {
     background-color: #111111;
     color: #ffffff;
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-    width: 100%;
 }
 
 .header-container {
@@ -52,7 +13,6 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-sizing: border-box;
 }
 
 .brand-logo {
@@ -60,440 +20,99 @@ img {
     font-weight: 700;
     letter-spacing: 2px;
     color: #ffffff;
-    text-decoration: none;
-    white-space: nowrap;
 }
 
-/* Desktop Horizontal Nav Links */
+/* Horizontal Main Links (Always Intact on Desktop) */
 .nav-menu {
     display: flex;
-    align-items: center;
     gap: 2rem;
 }
 
 .nav-link {
     color: #cccccc;
-    text-decoration: none;
     font-size: 0.95rem;
     font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;
-    transition: color 0.3s ease;
-    white-space: nowrap;
 }
 
 .nav-link:hover {
     color: #ffffff;
 }
 
-/* Mobile Hamburger Toggle Button (Hidden on Desktop) */
-.hamburger-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 28px;
-    height: 20px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1001;
-}
-
-.hamburger-toggle .bar {
-    width: 100%;
-    height: 3px;
+/* Secondary Category Bar */
+.category-bar {
     background-color: #ffffff;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-/* Hamburger Active State (X Icon Transformation) */
-.hamburger-toggle.active .bar:nth-child(1) {
-    transform: translateY(8.5px) rotate(45deg);
-}
-
-.hamburger-toggle.active .bar:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger-toggle.active .bar:nth-child(3) {
-    transform: translateY(-8.5px) rotate(-45deg);
-}
-
-/* ==========================================
-   3. HERO & BANNER SECTIONS
-   ========================================== */
-.hero-banner, .contact-hero, .page-hero {
-    background-color: #1a1a1a;
-    color: #ffffff;
-    text-align: center;
-    padding: 4rem 1.5rem;
-}
-
-.hero-banner h1, .contact-hero-content h1, .page-hero h1 {
-    font-size: 2.5rem;
-    letter-spacing: 3px;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-}
-
-.hero-banner p, .contact-hero-content p, .page-hero p {
-    font-size: 1.1rem;
-    color: #cccccc;
-    max-width: 650px;
-    margin: 0 auto;
-}
-
-/* ==========================================
-   4. PRODUCT GRID & CARDS
-   ========================================== */
-.container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.product-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 1px solid #eaeaea;
+    padding: 12px 20px;
     display: flex;
-    flex-direction: column;
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.product-image-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 125%; /* 4:5 Aspect Ratio */
-    overflow: hidden;
-    background-color: #f0f0f0;
-    cursor: pointer;
-}
-
-.product-image-wrapper img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.product-card:hover .product-image-wrapper img {
-    transform: scale(1.05);
-}
-
-.product-info {
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
-}
-
-.product-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #111111;
-}
-
-.product-category {
-    font-size: 0.85rem;
-    color: #777777;
-    text-transform: uppercase;
+    justify-content: center;
+    gap: 25px;
+    font-size: 13px;
     letter-spacing: 1px;
-    margin-bottom: 1rem;
 }
 
-.inquire-btn {
-    background-color: #111111;
-    color: #ffffff;
-    border: none;
-    padding: 0.75rem 1rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    text-align: center;
-}
-
-.inquire-btn:hover {
-    background-color: #333333;
-}
-
-/* ==========================================
-   5. CONTACT PAGE SIDE-BY-SIDE SECTION
-   ========================================== */
-.contact-container {
-    max-width: 1100px;
-    margin: 3rem auto;
-    padding: 0 1.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-}
-
-.contact-info-card, .contact-form-card {
-    background-color: #ffffff;
-    padding: 2.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-}
-
-.contact-info-card h2, .contact-form-card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: #111111;
-    letter-spacing: 1px;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 0.75rem;
-}
-
-.info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.25rem;
-    margin-bottom: 1.5rem;
-}
-
-.info-item i {
-    font-size: 1.25rem;
-    color: #111111;
-    margin-top: 0.25rem;
-}
-
-.info-item h4 {
-    font-size: 1rem;
-    color: #111111;
-    margin-bottom: 0.2rem;
-}
-
-.info-item p, .info-item a {
-    color: #555555;
-    font-size: 0.95rem;
-}
-
-.info-item a:hover {
-    color: #111111;
-    text-decoration: underline;
-}
-
-/* Form Group Controls */
-.contact-form .form-group {
-    margin-bottom: 1.25rem;
-}
-
-.contact-form label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.category-bar a {
     color: #333333;
 }
 
-.contact-form input, .contact-form textarea {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid #dddddd;
-    border-radius: 4px;
-    font-size: 0.95rem;
-    font-family: inherit;
-    transition: border-color 0.3s ease;
-}
-
-.contact-form input:focus, .contact-form textarea:focus {
-    outline: none;
-    border-color: #111111;
-}
-
-.submit-btn {
-    background-color: #111111;
-    color: #ffffff;
-    border: none;
-    padding: 0.9rem 1.5rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease;
-}
-
-.submit-btn:hover {
-    background-color: #333333;
-}
-
-/* ==========================================
-   6. GLOBAL IMAGE PREVIEW MODAL
-   ========================================== */
-.modal {
+/* Hidden Dropdown & Hamburger on Desktop */
+.hamburger-toggle, .mobile-dropdown {
     display: none;
-    position: fixed;
-    z-index: 2000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    justify-content: center;
-    align-items: center;
-    padding: 1.5rem;
 }
 
-.modal.active {
-    display: flex;
-}
-
-.modal-content {
-    max-width: 90%;
-    max-height: 85vh;
-    border-radius: 6px;
-    object-fit: contain;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-}
-
-.modal-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: #ffffff;
-    font-size: 2.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.modal-close:hover {
-    color: #cccccc;
-}
-
-/* ==========================================
-   7. FOOTER SECTION
-   ========================================== */
-.main-footer {
-    background-color: #111111;
-    color: #888888;
-    text-align: center;
-    padding: 2rem 1.5rem;
-    margin-top: auto;
-    font-size: 0.85rem;
-}
-
-.main-footer p {
-    margin-bottom: 0.5rem;
-}
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
-
-.footer-links a {
-    color: #aaaaaa;
-    transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: #ffffff;
-}
-
-/* ==========================================
-   8. RESPONSIVE BREAKPOINTS (MOBILE & TABLET)
-   ========================================== */
+/* Mobile Adjustments (<= 768px) */
 @media screen and (max-width: 768px) {
-    /* Header Responsive Layout */
-    .header-container {
-        padding: 0.85rem 1rem;
-    }
-
-    .brand-logo {
-        font-size: 1.15rem;
-        letter-spacing: 1px;
-    }
-
     .hamburger-toggle {
-        display: flex; /* Show Hamburger Icon */
-    }
-
-    .nav-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #111111;
+        display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-in-out, box-shadow 0.3s ease;
-        box-shadow: none;
-        box-sizing: border-box;
+        justify-content: space-between;
+        width: 26px;
+        height: 18px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
     }
 
-    /* Active Expanded Dropdown */
-    .nav-menu.active {
-        max-height: 300px;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+    .hamburger-toggle .bar {
+        width: 100%;
+        height: 2px;
+        background-color: #ffffff;
+        transition: all 0.3s ease;
+    }
+
+    /* Animated 3-line to X */
+    .hamburger-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger-toggle.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Hide standard category bar on mobile, show mobile dropdown when active */
+    .category-bar {
+        display: none;
+    }
+
+    .mobile-dropdown {
+        display: none;
+        flex-direction: column;
+        background-color: #1a1a1a;
+        width: 100%;
         border-top: 1px solid #222222;
     }
 
-    .nav-link {
-        width: 100%;
-        text-align: center;
-        padding: 1rem 0;
-        border-bottom: 1px solid #1a1a1a;
-        font-size: 0.9rem;
+    .mobile-dropdown.active {
+        display: flex;
     }
 
-    .nav-link:last-child {
-        border-bottom: none;
+    .mobile-dropdown a {
+        color: #cccccc;
+        padding: 12px 20px;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        border-bottom: 1px solid #282828;
     }
 
-    /* Hero Responsive */
-    .hero-banner h1, .contact-hero-content h1, .page-hero h1 {
-        font-size: 1.8rem;
-    }
-
-    .hero-banner p, .contact-hero-content p, .page-hero p {
-        font-size: 0.95rem;
-    }
-
-    /* Contact Page Stack Layout */
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin: 1.5rem auto;
-    }
-
-    .contact-info-card, .contact-form-card {
-        padding: 1.5rem;
+    .mobile-dropdown a:hover {
+        color: #ffffff;
+        background-color: #222222;
     }
 }

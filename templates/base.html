@@ -1,44 +1,89 @@
-<header class="main-header">
-    <div class="header-container">
-        <!-- Brand Logo / Title -->
-        <a href="{{ url_for('index') }}" class="brand-logo">HOUSE OF RAYOOR</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House of Rayoor - Haute Couture</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
 
-        <!-- Mobile Hamburger Toggle Button -->
-        <button class="hamburger-toggle" id="hamburgerBtn" aria-label="Toggle navigation menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Brand Logo -->
+            <a href="{{ url_for('home') }}" class="brand-logo">HOUSE OF RAYOOR</a>
 
-        <!-- Navigation Links -->
-        <nav class="nav-menu" id="navMenu">
-            <a href="{{ url_for('index') }}" class="nav-link">Home</a>
-            <a href="{{ url_for('collection') }}" class="nav-link">Collection</a>
-            <a href="{{ url_for('bespoke') }}" class="nav-link">Bespoke</a>
-            <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
-        </nav>
+            <!-- Mobile Hamburger Button -->
+            <button class="hamburger-toggle" id="hamburgerBtn" aria-label="Toggle navigation menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- Main Desktop Navigation -->
+            <nav class="nav-menu">
+                <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('collection') }}" class="nav-link">Collection</a>
+                <a href="{{ url_for('bespoke') }}" class="nav-link">Bespoke</a>
+                <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
+            </nav>
+        </div>
+
+        <!-- Mobile Dropdown Menu (Triggers from 3-Line Hamburger) -->
+        <div class="mobile-dropdown" id="mobileDropdown">
+            <a href="{{ url_for('collection') }}">NEW IN</a>
+            <a href="{{ url_for('collection') }}">ANKARA WEAR</a>
+            <a href="{{ url_for('collection') }}">DRESSES & GOWNS</a>
+            <a href="{{ url_for('collection') }}">AGBADA & SETS</a>
+            <a href="{{ url_for('collection') }}">KAFTANS</a>
+            <a href="{{ url_for('bespoke') }}">BESPOKE</a>
+            <a href="{{ url_for('contact') }}">CONTACT US</a>
+        </div>
+    </header>
+
+    <!-- Category Bar (Visible on Desktop) -->
+    <div class="category-bar">
+        <a href="{{ url_for('collection') }}">NEW IN</a>
+        <a href="{{ url_for('collection') }}">ANKARA WEAR</a>
+        <a href="{{ url_for('collection') }}">DRESSES & GOWNS</a>
+        <a href="{{ url_for('collection') }}">AGBADA & SETS</a>
+        <a href="{{ url_for('collection') }}">KAFTANS</a>
+        <a href="{{ url_for('bespoke') }}">BESPOKE</a>
+        <a href="{{ url_for('contact') }}">CONTACT US</a>
     </div>
-</header>
 
-<!-- JavaScript for Mobile Menu Toggle -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const navMenu = document.getElementById('navMenu');
+    <!-- Main Content Block -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
-        if (hamburgerBtn && navMenu) {
-            hamburgerBtn.addEventListener('click', function() {
-                hamburgerBtn.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2026 House of Rayoor. All rights reserved.</p>
+    </footer>
 
-            // Close menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!hamburgerBtn.contains(e.target) && !navMenu.contains(e.target)) {
-                    hamburgerBtn.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }
-            });
-        }
-    });
-</script>
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const mobileDropdown = document.getElementById('mobileDropdown');
+
+            if (hamburgerBtn && mobileDropdown) {
+                hamburgerBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    hamburgerBtn.classList.toggle('active');
+                    mobileDropdown.classList.toggle('active');
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (!hamburgerBtn.contains(e.target) && !mobileDropdown.contains(e.target)) {
+                        hamburgerBtn.classList.remove('active');
+                        mobileDropdown.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

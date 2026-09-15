@@ -12,8 +12,6 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'belloayoola71@gmail.com'
-
-# Pulls password from Environment Variable on deployment or falls back to standard key locally
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD', 'your_gmail_app_password')
 
 mail = Mail(app)
@@ -37,7 +35,7 @@ def format_title(filename):
     return name_without_ext.replace('_', ' ').replace('-', ' ').title()
 
 @app.route('/')
-def index():
+def home():
     return render_template('index.html', products=PRODUCTS_CATALOG[:4])
 
 @app.route('/collection')
