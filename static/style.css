@@ -686,6 +686,17 @@ body {
   padding: 5px;
 }
 
+/* Hide toggle button on desktop */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 26px;
+  cursor: pointer;
+  padding: 5px;
+}
+
 /* Apply only on mobile screens */
 @media (max-width: 768px) {
   .header-container {
