@@ -720,16 +720,14 @@ body {
   }
 }
 
-/* Mobile Horizontal Scrolling for Category Bar */
-@media (max-width: 768px) {
-  .category-bar {
-    display: flex !important;
-    overflow-x: auto !important;
-    white-space: nowrap !important;
-    -webkit-overflow-scrolling: touch;
-    padding: 10px 15px !important;
-    gap: 15px !important;
-  }
+.category-bar {
+  display: flex !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 15px !important;
+  gap: 15px !important;
+}
 
   /* Prevent links from shrinking */
   .category-bar a {
