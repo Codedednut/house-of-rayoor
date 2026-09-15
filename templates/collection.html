@@ -3,8 +3,8 @@
 {% block content %}
 <div class="contact-hero">
     <div class="contact-hero-content">
-        <h1>FULL COLLECTION</h1>
-        <p>Explore our complete design catalog. Click any image to preview or click the price to order directly on WhatsApp.</p>
+        <h1>NEW IN & FULL COLLECTION</h1>
+        <p>Explore our complete design catalog. Click to view details or click the WhatsApp button to inquire directly.</p>
     </div>
 </div>
 
@@ -12,7 +12,7 @@
     {% if items %}
     <div class="product-grid">
         {% for item in items %}
-        {% set message = "Hello House of Rayoor, I am interested in ordering: " ~ item.title ~ " (" ~ item.price ~ ")." %}
+        {% set message = "Hello House of Rayoor, I would like to inquire about ordering: " ~ item.title ~ "." %}
         <div class="product-card">
             <div class="product-img-wrapper" onclick="openImagePreview('/static/{{ item.image }}', '{{ item.title }}')">
                 <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.title }}">
@@ -23,8 +23,8 @@
             <div class="product-details">
                 <p class="product-category">{{ item.category }}</p>
                 <h3 class="product-title" onclick="openImagePreview('/static/{{ item.image }}', '{{ item.title }}')">{{ item.title }}</h3>
-                <a href="https://wa.me/2348134984539?text={{ message|urlencode }}" target="_blank" class="price-wa-link" title="Order via WhatsApp">
-                    <p class="product-price">{{ item.price }} <i class="fab fa-whatsapp wa-price-icon"></i></p>
+                <a href="https://wa.me/2348134984539?text={{ message|urlencode }}" target="_blank" class="price-wa-link" title="Inquire on WhatsApp">
+                    <p class="product-price"><i class="fab fa-whatsapp wa-price-icon"></i> Inquire Price</p>
                 </a>
             </div>
         </div>

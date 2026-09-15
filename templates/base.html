@@ -3,96 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page_title if page_title else "House of Rayoor - Haute Couture & Bespoke Tailoring" }}</title>
+    <title>House of Rayoor - Haute Couture</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <!-- Top Announcement Bar -->
     <div class="top-bar">
-        <p>✨ FREE SHIPPING ON ORDERS ABOVE ₦100,000 | WITHIN NIGERIA </p>
+        <p>FREE SHIPPING ON ORDERS ABOVE ₦100,000 | WITHIN NIGERIA</p>
     </div>
 
-    <!-- Fashion Nova Style Header -->
-    <header class="navbar">
-        <div class="header-main-row">
-            <!-- Brand Logo & Tagline Wrapper -->
-            <div class="brand-block">
-                <a href="/" class="logo">HOUSE OF RAYOOR</a>
-                <span class="brand-slogan">YOUR SATISFACTION, OUR PRIORITY</span>
+    <!-- Main Navigation Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="brand-logo">
+                <a href="{{ url_for('home') }}">HOUSE OF RAYOOR</a>
+                <span class="tagline">YOUR SATISFACTION, OUR PRIORITY</span>
             </div>
 
-            <!-- Audience Tabs -->
-            <div class="main-category-tabs">
-                <a href="/" class="tab-link active">HOME</a>
-                <a href="/collection?q=bespoke" class="tab-link">BESPOKE</a>
-                <a href="/collection?q=traditional" class="tab-link">TRADITIONAL</a>
-                <a href="/collection?q=kiddies" class="tab-link">KIDDIES</a>
-            </div>
+            <nav class="nav-links">
+                <a href="{{ url_for('home') }}">HOME</a>
+                <a href="{{ url_for('collection') }}">COLLECTION</a>
+                <a href="{{ url_for('bespoke') }}">BESPOKE</a>
+                <a href="{{ url_for('contact') }}">CONTACT US</a>
+            </nav>
 
-            <!-- Expanded Centered Search Bar -->
-            <form action="/" method="GET" class="search-form">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" name="q" placeholder="Search within House of Rayoor..." value="{{ search_query if search_query else '' }}">
-            </form>
-
-            <!-- User Utility Icons -->
-            <div class="header-icons">
-                <a href="/contact" title="Account / Help"><i class="far fa-user"></i></a>
-                <a href="/collection" title="Wishlist"><i class="far fa-heart"></i></a>
-                <a href="/collection" title="Shopping Bag"><i class="fas fa-shopping-bag"></i></a>
+            <div class="header-actions">
+                <div class="header-search">
+                    <form action="{{ url_for('collection') }}" method="GET">
+                        <input type="text" name="q" placeholder="Search within House of Rayoor..." value="{{ search_query if search_query else '' }}">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="header-icons">
+                    <a href="#" title="Account"><i class="far fa-user"></i></a>
+                    <a href="#" title="Wishlist"><i class="far fa-heart"></i></a>
+                    <a href="#" title="Cart"><i class="fas fa-shopping-bag"></i></a>
+                </div>
             </div>
         </div>
-
-        <!-- Sub Navigation Bar -->
-        <nav class="sub-nav-bar">
-            <div class="sub-nav-container">
-                <a href="/collection" class="nav-item highlight">NEW IN</a>
-                <a href="/collection?q=ankara">ANKARA WEAR</a>
-                <a href="/collection?q=gown">DRESSES & GOWNS</a>
-                <a href="/collection?q=agbada">AGBADA & SETS</a>
-                <a href="/collection?q=kaftan">KAFTANS</a>
-                <a href="/bespoke">BESPOKE GALLERY</a>
-                <a href="/contact">CONTACT US</a>
-            </div>
-        </nav>
     </header>
 
+    <!-- Sub Navigation Category Bar -->
+    <nav class="category-bar">
+        <a href="{{ url_for('collection') }}">NEW IN</a>
+        <a href="{{ url_for('collection', q='Ankara') }}">ANKARA WEAR</a>
+        <a href="{{ url_for('collection', q='Dresses') }}">DRESSES & GOWNS</a>
+        <a href="{{ url_for('collection', q='Agbada') }}">AGBADA & SETS</a>
+        <a href="{{ url_for('collection', q='Kaftans') }}">KAFTANS</a>
+        <a href="{{ url_for('bespoke') }}">BESPOKE</a>
+        <a href="{{ url_for('collection') }}">GALLERY</a>
+        <a href="{{ url_for('contact') }}">CONTACT US</a>
+    </nav>
+
+    <!-- Dynamic Main Content -->
     <main>
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Classic Footer Format -->
-    <footer class="footer">
+    <!-- Global Image Preview Modal -->
+    <div id="imageModal" class="image-modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content-img" id="modalImg" alt="Preview Image">
+        <div id="modalCaption"></div>
+    </div>
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
         <div class="footer-container">
-            <div class="footer-brand">
-                <h3>House of Rayoor</h3>
-                <p class="footer-slogan">Your Satisfaction, Our Priority</p>
-                <p>Luxury Bespoke Tailoring & Contemporary African Fashion.</p>
-                <p class="reg-number">Registered Business No: RC-3722115 LLC</p>
+            <div class="footer-col brand-col">
+                <h3>HOUSE OF RAYOOR</h3>
+                <p class="footer-tagline">YOUR SATISFACTION, OUR PRIORITY</p>
+                <span class="rc-number">RC: 3722115 </span>
+                <p class="footer-desc">Bespoke fashion, luxury traditional wear, and contemporary ready-to-wear designs crafted with precision.</p>
             </div>
-            <div class="footer-links">
-                <h4>Quick Navigation</h4>
-                <a href="/">Home Page</a>
-                <a href="/collection">Full Collection</a>
-                <a href="/collection?q=">Bespoke Gallery</a>
-                <a href="/contact">Contact Us</a>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('collection') }}">Full Collection</a></li>
+                    <li><a href="{{ url_for('bespoke') }}">Bespoke Services</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
             </div>
-            <div class="footer-socials">
+
+            <div class="footer-col">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col social-col">
                 <h4>Connect With Us</h4>
-                <div class="social-icons">
-                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://facebook.com/https://www.facebook.com/profile.php?id=100063771926012" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <p>Follow us or talk directly to our stylists on WhatsApp:</p>
+                <div class="footer-social-icons">
+                    <a href="https://instagram.com/@houseofrayoor" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/@houseofrayoor" target="_blank"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://tiktok.com/@houseofrayoor" target="_blank"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://wa.me/2348134984539" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
+                <a href="https://wa.me/2348134984539" target="_blank" class="footer-wa-btn">
+                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
             </div>
         </div>
+
         <div class="footer-bottom">
-            <p>&copy; 2026 House of Rayoor LLC. All Rights Reserved.</p>
+            <p>&copy; 2026 House of Rayoor (RC: 3722115 ). All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- Global Modal JavaScript for Non-Carousel Image Preview -->
+    <script>
+        function openModal(imgSrc, captionText) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            const modalCaption = document.getElementById('modalCaption');
+            
+            modal.style.display = 'flex';
+            modalImg.src = imgSrc;
+            modalCaption.innerText = captionText || '';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Target all images EXCEPT carousel slides
+        document.addEventListener('DOMContentLoaded', () => {
+            const allImages = document.querySelectorAll('img:not(.slide-frame img)');
+            
+            allImages.forEach(img => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const caption = img.alt || img.title || '';
+                    openModal(img.src, caption);
+                });
+            });
+        });
+
+        // Close modal when clicking outside of image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
 </body>
 </html>

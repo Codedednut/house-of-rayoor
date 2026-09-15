@@ -4,7 +4,7 @@
 <div class="contact-hero">
     <div class="contact-hero-content">
         <h1>BESPOKE GALLERY</h1>
-        <p>Explore our exclusive haute couture, bespoke tailoring, and custom craftsmanship. Click any image to preview or click the price to order on WhatsApp.</p>
+        <p>Explore our exclusive haute couture and custom craftsmanship. Click any image to preview or click 'Inquire Price' to chat on WhatsApp.</p>
     </div>
 </div>
 
@@ -16,7 +16,7 @@
     {% if items %}
     <div class="product-grid">
         {% for item in items %}
-        {% set message = "Hello House of Rayoor, I am interested in custom ordering: " ~ item.title ~ " (" ~ item.price ~ ")." %}
+        {% set message = "Hello House of Rayoor, I would like to inquire about the price and bespoke options for: " ~ item.title ~ "." %}
         <div class="product-card">
             <div class="product-img-wrapper" onclick="openImagePreview('/static/{{ item.image }}', '{{ item.title }}')">
                 <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.title }}">
@@ -27,8 +27,8 @@
             <div class="product-details">
                 <p class="product-category">{{ item.category }}</p>
                 <h3 class="product-title" onclick="openImagePreview('/static/{{ item.image }}', '{{ item.title }}')">{{ item.title }}</h3>
-                <a href="https://wa.me/2348134984539?text={{ message|urlencode }}" target="_blank" class="price-wa-link" title="Order via WhatsApp">
-                    <p class="product-price">{{ item.price }} <i class="fab fa-whatsapp wa-price-icon"></i></p>
+                <a href="https://wa.me/2348134984539?text={{ message|urlencode }}" target="_blank" class="price-wa-link" title="Inquire Price on WhatsApp">
+                    <p class="product-price"><i class="fab fa-whatsapp wa-price-icon"></i> Inquire Price</p>
                 </a>
             </div>
         </div>
@@ -36,7 +36,7 @@
     </div>
     {% else %}
     <p class="no-results" style="text-align: center; color: #666; margin: 2rem 0;">
-        No bespoke items found. Ensure images inside <code>static/images/</code> contain "bespoke" in their file name.
+        No bespoke items found.
     </p>
     {% endif %}
 </section>

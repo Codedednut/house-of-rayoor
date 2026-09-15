@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Full Edge-to-Edge Hero Carousel -->
+<!-- Edge-to-Edge Hero Carousel -->
 <section class="hero-carousel-section full-width-hero">
     <div class="carousel-viewport" id="heroCarousel">
         <div class="carousel-track" id="carouselTrack">
@@ -14,16 +14,35 @@
     </div>
 </section>
 
-<!-- Trending Styles Section -->
+<!-- Trending Styles Section (Fed Directly From Full Collection) -->
 <section class="products-section">
     <div class="section-title">
         <h2>Trending Styles</h2>
     </div>
     
     {% if items %}
-    <div class="product-grid" id="trending-grid"></div>
+    <div class="product-grid" id="trending-grid">
+        {% for item in items[:8] %}
+        {% set message = "Hello House of Rayoor, I would like to inquire about ordering: " ~ item.title ~ "." %}
+        <div class="product-card">
+            <div class="product-img-wrapper" onclick="openImagePreview('/static/{{ item.image }}', '{{ item.title }}')">
+                <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.title }}">
+                <button class="wishlist-btn" onclick="toggleWishlist(event, this)" title="Add to Wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            <div class="product-details">
+                <p class="product-category">{{ item.category }}</p>
+                <h3 class="product-title" onclick="openImagePreview('/static/{{ item.image }}', '{{ item.title }}')">{{ item.title }}</h3>
+                <a href="https://wa.me/2348134984539?text={{ message|urlencode }}" target="_blank" class="price-wa-link" title="Inquire on WhatsApp">
+                    <p class="product-price"><i class="fab fa-whatsapp wa-price-icon"></i> Inquire Price</p>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
     {% else %}
-    <p class="no-results">No styles found matching your search.</p>
+    <p class="no-results" style="text-align: center; margin: 3rem 0;">No styles found matching your search.</p>
     {% endif %}
 </section>
 
@@ -44,23 +63,23 @@
         setInterval(() => {
             slideIndex = (slideIndex + 1) % slides.length;
             track.style.transform = `translateX(-${slideIndex * 100}%)`;
-        }, 3000);
+        }, 3500);
     }
 
-    // Dynamic Trending Grid Setup
-    const collectionItems = {{ items|tojson }};
+    // Dynamic Trending Rotation from Full Collection Data
+    const fullCollection = {{ items|tojson }};
     const whatsappNumber = "2348134984539"; 
 
-    function renderTrendingItems(startIndex) {
+    function updateTrendingGrid(startIndex) {
         const grid = document.getElementById('trending-grid');
-        if (!grid || collectionItems.length === 0) return;
+        if (!grid || fullCollection.length === 0) return;
         
         grid.innerHTML = '';
-        const count = Math.min(4, collectionItems.length);
+        const displayCount = Math.min(8, fullCollection.length);
         
-        for (let i = 0; i < count; i++) {
-            const item = collectionItems[(startIndex + i) % collectionItems.length];
-            const message = encodeURIComponent(`Hello House of Rayoor, I am interested in ordering: ${item.title} (${item.price}).`);
+        for (let i = 0; i < displayCount; i++) {
+            const item = fullCollection[(startIndex + i) % fullCollection.length];
+            const message = encodeURIComponent(`Hello House of Rayoor, I would like to inquire about ordering: ${item.title}.`);
             const waUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
             const imgPath = `/static/${item.image}`;
 
@@ -75,8 +94,8 @@
                     <div class="product-details">
                         <p class="product-category">${item.category}</p>
                         <h3 class="product-title" onclick="openImagePreview('${imgPath}', '${item.title}')">${item.title}</h3>
-                        <a href="${waUrl}" target="_blank" class="price-wa-link" title="Order via WhatsApp">
-                            <p class="product-price">${item.price} <i class="fab fa-whatsapp wa-price-icon"></i></p>
+                        <a href="${waUrl}" target="_blank" class="price-wa-link" title="Inquire on WhatsApp">
+                            <p class="product-price"><i class="fab fa-whatsapp wa-price-icon"></i> Inquire Price</p>
                         </a>
                     </div>
                 </div>
@@ -84,17 +103,15 @@
         }
     }
 
-    let currentIndex = 0;
-    renderTrendingItems(currentIndex);
-
-    if (collectionItems.length > 4) {
+    let catalogOffset = 0;
+    if (fullCollection.length > 8) {
         setInterval(() => {
-            currentIndex = (currentIndex + 4) % collectionItems.length;
-            renderTrendingItems(currentIndex);
-        }, 4000);
+            catalogOffset = (catalogOffset + 4) % fullCollection.length;
+            updateTrendingGrid(catalogOffset);
+        }, 5000);
     }
 
-    // Modal Controls
+    // Image Modal Controls
     function openImagePreview(src, alt) {
         const modal = document.getElementById("imagePreviewModal");
         const modalImg = document.getElementById("previewImageTarget");

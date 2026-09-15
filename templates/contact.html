@@ -1,72 +1,96 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-<!-- Page Header -->
-<div class="contact-hero">
+<!-- Contact Hero Banner -->
+<section class="contact-hero">
     <div class="contact-hero-content">
-        <h1>FOR BOOKING AND CONSULTATION <br>
-            Contact us anytime!</h1>
-        <p>Get in touch with House of Rayoor, book custom measurement consultations, or send us an inquiry directly below.</p>
+        <h1>GET IN TOUCH</h1>
+        <p>Have a question about our collections or need a bespoke outfit? We are here to assist you.</p>
     </div>
+</section>
+
+<!-- Flash Success/Error Messages -->
+<div style="max-width: 1100px; margin: 1.5rem auto 0; padding: 0 1.5rem;">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div style="padding: 1rem; border-radius: 6px; font-weight: 500; font-size: 0.9rem; text-align: center; 
+                      {% if category == 'success' %}background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;
+                      {% else %}background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
 </div>
 
-<!-- Main Contact & Measurement Section -->
-<div class="contact-container">
-    <div class="contact-grid">
-        <!-- Direct Contact Details Column -->
-        <div class="contact-cards-col">
-            <a href="https://wa.me/2348134984539" target="_blank" class="contact-card whatsapp-card">
-                <div class="card-icon"><i class="fab fa-whatsapp"></i></div>
-                <div class="card-text">
-                    <h3>WhatsApp Consultation</h3>
-                    <p>Chat directly with our master tailors for instant consultations.</p>
-                    <span class="card-action">Message +234 813 498 4539 &rarr;</span>
-                </div>
-            </a>
-
-            <div class="contact-card">
-                <div class="card-icon"><i class="fas fa-ruler-combined"></i></div>
-                <div class="card-text">
-                    <h3>Custom Measurement Sessions</h3>
-                    <p>In-person & Virtual Fitting Sessions available Monday – Saturday.</p>
-                </div>
-            </div>
-
-            <div class="contact-card">
-                <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
-                <div class="card-text">
-                    <h3>Main Atelier</h3>
-                    <p>House of Rayoor Studio, <br>
-                        17,Allied Street, Ketu - Lagos, <br>
-                        Lagos Nigeria.</p>
-                </div>
+<!-- Side-by-Side Contact Section -->
+<section class="contact-container">
+    <!-- Left Card: Contact Information -->
+    <div class="contact-info-card">
+        <h2>Contact Information</h2>
+        
+        <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+                <h4>Our Atelier</h4>
+                <p>!7, Allied Street,<br>
+                    Ketu-Lagos,<br>
+                    Lagos, Nigeria</p>
             </div>
         </div>
 
-        <!-- Integrated Contact & Measurement Booking Form -->
-        <div class="form-wrapper">
-            <h2>Send an Inquiry / Submit Measurements</h2>
-            <p>Fill out the details below and our team will reach out immediately.</p>
-            <form action="/contact" method="POST" class="styled-form">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your full name" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone / WhatsApp Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="e.g. 0xxxxx" required>
-                </div>
-                <div class="form-group">
-                    <label for="service">Service Required</label>
-                    <input type="text" id="service" name="service" placeholder="e.g. Bespoke Agbada, Bridal Gown, Custom Fitting">
-                </div>
-                <div class="form-group">
-                    <label for="measurements">Custom Measurements / Specific Notes</label>
-                    <textarea id="measurements" name="message" rows="4" placeholder="Enter Chest, Waist, Length dimensions or inquiry details..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn">SUBMIT INQUIRY</button>
-            </form>
+        <div class="info-item">
+            <i class="fas fa-phone-alt"></i>
+            <div>
+                <h4>Phone & Customer Care</h4>
+                <p><a href="tel:+2348134984539">+234 813 498 4539</a></p>
+            </div>
+        </div>
+
+        <div class="info-item">
+            <i class="fab fa-whatsapp"></i>
+            <div>
+                <h4>Customer Support</h4>
+                <p><a href="https://wa.me/2348134984539" target="_blank">+234 813 498 4539</a></p>
+            </div>
+        </div>
+
+        <div class="info-item">
+            <i class="fas fa-building"></i>
+            <div>
+                <h4>Business Registration</h4>
+                <p>House of Rayoor — RC: 3722115</p>
+            </div>
         </div>
     </div>
-</div>
+
+    <!-- Right Card: Send Us a Message -->
+    <div class="contact-form-card">
+        <h2>Send Us a Message</h2>
+        <form action="{{ url_for('contact') }}" method="POST" class="contact-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number / WhatsApp</label>
+                <input type="tel" id="phone" name="phone" placeholder="e.g. +234..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Your Message or Custom Request</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell us about the style or service you're interested in..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">SEND MESSAGE</button>
+        </form>
+    </div>
+</section>
 {% endblock %}
