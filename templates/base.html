@@ -1,89 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>House of Rayoor - Haute Couture</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}House of Rayoor{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-    <!-- Main Header -->
-    <header class="main-header">
-        <div class="header-container">
-            <!-- Brand Logo -->
-            <a href="{{ url_for('home') }}" class="brand-logo">HOUSE OF RAYOOR</a>
+  <!-- Main Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="brand-logo">
+        <a href="{{ url_for('home') }}">HOUSE OF RAYOOR</a>
+        <span class="tagline">LUXURY & ELEGANCE</span>
+      </div>
 
-            <!-- Mobile Hamburger Button -->
-            <button class="hamburger-toggle" id="hamburgerBtn" aria-label="Toggle navigation menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+      <!-- Mobile 3-Line Hamburger Toggle Button -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        &#9776;
+      </button>
 
-            <!-- Main Desktop Navigation -->
-            <nav class="nav-menu">
-                <a href="{{ url_for('home') }}" class="nav-link">Home</a>
-                <a href="{{ url_for('collection') }}" class="nav-link">Collection</a>
-                <a href="{{ url_for('bespoke') }}" class="nav-link">Bespoke</a>
-                <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
-            </nav>
-        </div>
-
-        <!-- Mobile Dropdown Menu (Triggers from 3-Line Hamburger) -->
-        <div class="mobile-dropdown" id="mobileDropdown">
-            <a href="{{ url_for('collection') }}">NEW IN</a>
-            <a href="{{ url_for('collection') }}">ANKARA WEAR</a>
-            <a href="{{ url_for('collection') }}">DRESSES & GOWNS</a>
-            <a href="{{ url_for('collection') }}">AGBADA & SETS</a>
-            <a href="{{ url_for('collection') }}">KAFTANS</a>
-            <a href="{{ url_for('bespoke') }}">BESPOKE</a>
-            <a href="{{ url_for('contact') }}">CONTACT US</a>
-        </div>
-    </header>
-
-    <!-- Category Bar (Visible on Desktop) -->
-    <div class="category-bar">
-        <a href="{{ url_for('collection') }}">NEW IN</a>
-        <a href="{{ url_for('collection') }}">ANKARA WEAR</a>
-        <a href="{{ url_for('collection') }}">DRESSES & GOWNS</a>
-        <a href="{{ url_for('collection') }}">AGBADA & SETS</a>
-        <a href="{{ url_for('collection') }}">KAFTANS</a>
+      <!-- Main Navigation Links -->
+      <nav class="nav-links" id="navMenu">
+        <a href="{{ url_for('home') }}">HOME</a>
+        <a href="{{ url_for('collection') }}">COLLECTION</a>
         <a href="{{ url_for('bespoke') }}">BESPOKE</a>
-        <a href="{{ url_for('contact') }}">CONTACT US</a>
+        <a href="{{ url_for('contact') }}">CONTACT</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Main Content Block -->
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+  <!-- Secondary Category Bar -->
+  <nav class="category-bar">
+    <a href="{{ url_for('collection') }}">NEW IN</a>
+    <a href="{{ url_for('collection', q='Ankara') }}">ANKARA WEAR</a>
+    <a href="{{ url_for('collection', q='Dresses') }}">DRESSES & GOWNS</a>
+    <a href="{{ url_for('collection', q='Agbada') }}">AGBADA & SETS</a>
+    <a href="{{ url_for('collection', q='Kaftans') }}">KAFTANS</a>
+    <a href="{{ url_for('bespoke') }}">BESPOKE</a>
+    <a href="{{ url_for('collection') }}">GALLERY</a>
+    <a href="{{ url_for('contact') }}">CONTACT US</a>
+  </nav>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <p>&copy; 2026 House of Rayoor. All rights reserved.</p>
-    </footer>
+  <!-- Dynamic Main Content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
 
-    <!-- JavaScript for Mobile Menu Toggle -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburgerBtn = document.getElementById('hamburgerBtn');
-            const mobileDropdown = document.getElementById('mobileDropdown');
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-bottom">
+      &copy; 2026 House of Rayoor. All rights reserved.
+    </div>
+  </footer>
 
-            if (hamburgerBtn && mobileDropdown) {
-                hamburgerBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    hamburgerBtn.classList.toggle('active');
-                    mobileDropdown.classList.toggle('active');
-                });
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
 
-                document.addEventListener('click', function(e) {
-                    if (!hamburgerBtn.contains(e.target) && !mobileDropdown.contains(e.target)) {
-                        hamburgerBtn.classList.remove('active');
-                        mobileDropdown.classList.remove('active');
-                    }
-                });
-            }
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+          navMenu.classList.toggle('active');
         });
-    </script>
+      }
+    });
+  </script>
+
 </body>
 </html>
