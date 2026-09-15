@@ -115,7 +115,7 @@ main {
 }
 
 /* =========================================
-   MOBILE RESPONSIVE OVERRIDES
+   MOBILE RESPONSIVE OVERRIDES (HAMBURGER & SCROLL)
    ========================================= */
 
 /* Hide 3-line toggle button on desktop */
@@ -134,12 +134,12 @@ main {
     padding: 0 15px;
   }
 
-  /* Show 3-line menu toggle on mobile */
+  /* Show 3-line menu toggle exclusively on mobile */
   .nav-toggle {
     display: block !important;
   }
 
-  /* Hide navigation links by default on mobile, turn into dropdown when active */
+  /* Convert desktop nav links into a hidden dropdown menu controlled by hamburger */
   .nav-links {
     display: none;
     flex-direction: column;
@@ -160,11 +160,12 @@ main {
     font-size: 14px;
   }
 
+  /* Toggled state activated via JavaScript */
   .nav-links.active {
     display: flex !important;
   }
 
-  /* Horizontal Scrolling Category Bar on Mobile */
+  /* Enable smooth touch horizontal scrolling for the secondary category bar */
   .category-bar {
     display: flex !important;
     overflow-x: auto !important;
