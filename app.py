@@ -3,7 +3,8 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_mail import Mail, Message
 
 app = Flask(__name__)
-app.secret_key = "house_of_rayoor_super_secret_key_123"  # Replace with
+app.secret_key = "house_of_rayoor_super_secret_key_123" 
+
 IMAGE_DIR = os.path.join(app.static_folder, 'images')
 
 # EDITABLE PRODUCTS CATALOG (Categorized without hardcoded price tags)
@@ -33,20 +34,15 @@ PRODUCTS_CATALOG = [
     {"filename": "Princess kid dress.jpg", "title": "Princess Kid Dress", "category": "Kiddies"}
 ]
 
-import os
-from flask_mail import Mail, Message
-
-# 1. Add these configurations near the top where your app = Flask(__name__) is defined
+# Flask-Mail Configurations
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'belloayoola71@gmail.com'
-# Use an App Password generated from your Google Account settings
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD', 'your_gmail_app_password')
 
 mail = Mail(app)
 
-# 2. Update ONLY the contact route function
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':

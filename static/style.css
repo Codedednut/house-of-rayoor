@@ -2,7 +2,6 @@
    HOUSE OF RAYOOR - MAIN STYLESHEET
    ========================================= */
 
-/* Reset & Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -21,7 +20,9 @@ a {
   color: inherit;
 }
 
-/* Main Navigation Header */
+/* =========================================
+   DESKTOP HEADER & NAVIGATION (Default)
+   ========================================= */
 .main-header {
   background-color: #111111;
   color: #ffffff;
@@ -53,9 +54,14 @@ a {
   margin-top: 2px;
 }
 
+/* Desktop Navigation Links */
 .nav-links {
-  display: flex;
+  display: flex !important;
   gap: 30px;
+  position: static;
+  background: transparent;
+  width: auto;
+  box-shadow: none;
 }
 
 .nav-links a {
@@ -68,13 +74,19 @@ a {
   color: #d4af37;
 }
 
-/* Secondary Category Bar */
+/* Hide Hamburger Toggle on Desktop */
+.nav-toggle {
+  display: none !important;
+}
+
+/* Secondary Category Bar (Desktop) */
 .category-bar {
   background-color: #ffffff;
   border-bottom: 1px solid #eaeaea;
   padding: 15px 20px;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 30px;
   font-size: 13px;
   letter-spacing: 1px;
@@ -90,7 +102,7 @@ a {
   font-weight: bold;
 }
 
-/* General Layout & Content Container */
+/* Main Content & Footer */
 main {
   max-width: 1200px;
   margin: 40px auto;
@@ -98,7 +110,6 @@ main {
   min-height: 60vh;
 }
 
-/* Footer Styles */
 .main-footer {
   background-color: #111111;
   color: #ffffff;
@@ -115,33 +126,27 @@ main {
 }
 
 /* =========================================
-   MOBILE RESPONSIVE OVERRIDES (HAMBURGER & SCROLL)
+   MOBILE RESPONSIVE OVERRIDES (Screens <= 768px)
    ========================================= */
-
-/* Hide 3-line toggle button on desktop */
-.nav-toggle {
-  display: none;
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  font-size: 26px;
-  cursor: pointer;
-  padding: 5px;
-}
-
 @media (max-width: 768px) {
   .header-container {
     padding: 0 15px;
   }
 
-  /* Show 3-line menu toggle exclusively on mobile */
+  /* Show 3-line hamburger button only on mobile */
   .nav-toggle {
     display: block !important;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 26px;
+    cursor: pointer;
+    padding: 5px;
   }
 
-  /* Convert desktop nav links into a hidden dropdown menu controlled by hamburger */
+  /* Hide navigation links by default on mobile until toggled */
   .nav-links {
-    display: none;
+    display: none !important;
     flex-direction: column;
     width: 100%;
     background-color: #111111;
@@ -156,16 +161,16 @@ main {
 
   .nav-links a {
     display: block;
-    padding: 10px 0;
+    padding: 12px 0;
     font-size: 14px;
   }
 
-  /* Toggled state activated via JavaScript */
+  /* When JS activates the menu */
   .nav-links.active {
     display: flex !important;
   }
 
-  /* Enable smooth touch horizontal scrolling for the secondary category bar */
+  /* Enable smooth horizontal scroll for category bar on mobile */
   .category-bar {
     display: flex !important;
     overflow-x: auto !important;
@@ -174,6 +179,7 @@ main {
     justify-content: flex-start !important;
     padding: 12px 15px !important;
     gap: 20px !important;
+    flex-wrap: nowrap !important;
   }
 
   .category-bar a {
