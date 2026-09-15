@@ -697,42 +697,47 @@ body {
   padding: 5px;
 }
 
-/* Apply only on mobile screens */
+/* Enable horizontal swipe for secondary category bar on mobile */
 @media (max-width: 768px) {
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    padding: 10px 15px;
+  .category-bar, 
+  .sub-nav, 
+  .categories-nav,
+  .categories {
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 12px 15px !important;
+    gap: 15px !important;
   }
 
-  .nav-toggle {
-    display: block; /* Show hamburger button on mobile */
+  /* Hide scrollbar line on mobile touch devices */
+  .category-bar::-webkit-scrollbar, 
+  .sub-nav::-webkit-scrollbar, 
+  .categories-nav::-webkit-scrollbar,
+  .categories::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Mobile Horizontal Scrolling for Category Bar */
+@media (max-width: 768px) {
+  .category-bar {
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px 15px !important;
+    gap: 15px !important;
   }
 
-  .nav-links {
-    display: none; /* Hide default inline menu links */
-    flex-direction: column;
-    width: 100%;
-    background-color: #111111;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 999;
-    padding: 15px 0;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-    text-align: center;
+  /* Prevent links from shrinking */
+  .category-bar a {
+    flex-shrink: 0 !important;
   }
 
-  .nav-links a {
-    display: block;
-    padding: 10px 0;
-    margin: 0;
-  }
-
-  /* Triggered by JS when tapped */
-  .nav-links.active {
-    display: flex;
+  /* Hide scrollbar line */
+  .category-bar::-webkit-scrollbar {
+    display: none !important;
   }
 }
