@@ -697,44 +697,25 @@ body {
   padding: 5px;
 }
 
-/* Enable horizontal swipe for secondary category bar on mobile */
+/* ==========================================
+   MOBILE CATEGORY BAR HORIZONTAL SCROLL
+   ========================================== */
 @media (max-width: 768px) {
-  .category-bar, 
-  .sub-nav, 
-  .categories-nav,
-  .categories {
+  .category-bar {
     display: flex !important;
     overflow-x: auto !important;
     white-space: nowrap !important;
     -webkit-overflow-scrolling: touch;
-    padding: 12px 15px !important;
+    padding: 10px 15px !important;
     gap: 15px !important;
   }
 
-  /* Hide scrollbar line on mobile touch devices */
-  .category-bar::-webkit-scrollbar, 
-  .sub-nav::-webkit-scrollbar, 
-  .categories-nav::-webkit-scrollbar,
-  .categories::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-.category-bar {
-  display: flex !important;
-  overflow-x: auto !important;
-  white-space: nowrap !important;
-  -webkit-overflow-scrolling: touch;
-  padding: 10px 15px !important;
-  gap: 15px !important;
-}
-
-  /* Prevent links from shrinking */
+  /* Prevent category links from shrinking */
   .category-bar a {
     flex-shrink: 0 !important;
   }
 
-  /* Hide scrollbar line */
+  /* Hide scrollbar line on touch devices */
   .category-bar::-webkit-scrollbar {
     display: none !important;
   }
