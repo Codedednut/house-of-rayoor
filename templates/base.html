@@ -12,7 +12,7 @@
   <header class="main-header">
     <div class="header-container">
       <div class="brand-logo">
-        <a href="{{ url_for('index') }}">HOUSE OF RAYOOR</a>
+        <a href="{{ url_for('home') }}">HOUSE OF RAYOOR</a>
         <span class="tagline">LUXURY & ELEGANCE</span>
       </div>
 
@@ -23,7 +23,7 @@
 
       <!-- Main Navigation Links -->
       <nav class="nav-links" id="navMenu">
-        <a href="{{ url_for('index') }}">HOME</a>
+        <a href="{{ url_for('home') }}">HOME</a>
         <a href="{{ url_for('collection') }}">COLLECTION</a>
         <a href="{{ url_for('bespoke') }}">BESPOKE</a>
         <a href="{{ url_for('contact') }}">CONTACT</a>
@@ -34,10 +34,10 @@
   <!-- Secondary Category Bar -->
   <nav class="category-bar">
     <a href="{{ url_for('collection') }}">NEW IN</a>
-    <a href="{{ url_for('collection', q='Ankara') }}">ANKARA WEAR</a>
-    <a href="{{ url_for('collection', q='Dresses') }}">DRESSES & GOWNS</a>
-    <a href="{{ url_for('collection', q='Agbada') }}">AGBADA & SETS</a>
-    <a href="{{ url_for('collection', q='Kaftans') }}">KAFTANS</a>
+    <a href="{{ url_for('collection') }}">ANKARA WEAR</a>
+    <a href="{{ url_for('collection') }}">DRESSES & GOWNS</a>
+    <a href="{{ url_for('collection') }}">AGBADA & SETS</a>
+    <a href="{{ url_for('collection') }}">KAFTANS</a>
     <a href="{{ url_for('bespoke') }}">BESPOKE</a>
     <a href="{{ url_for('collection') }}">GALLERY</a>
     <a href="{{ url_for('contact') }}">CONTACT US</a>
