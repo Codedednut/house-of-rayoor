@@ -686,6 +686,9 @@ body {
         justify-content: space-between;
     }
 
+    .category-bar {
+        display: none;
+    }
     /* Hide standard desktop text navigation on narrow screens to prevent overflow */
     .nav-links {
         display: none; 
