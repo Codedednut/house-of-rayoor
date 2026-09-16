@@ -237,7 +237,7 @@ body {
     margin: 0 auto;
 }
 
-/* Contact Page Layout & Grid (Side-by-Side Setup) */
+/* Contact Page Layout & Grid */
 .contact-container {
     max-width: 1100px;
     margin: 3rem auto;
@@ -675,22 +675,36 @@ body {
     color: #777;
 }
 
-/* Mobile Responsiveness & Hamburger Drawer Styles */
+/* Mobile Optimization & Hamburger Drawer Styles */
 @media (max-width: 900px) {
+    .main-header {
+        padding: 0.8rem 1rem;
+    }
+
+    .header-container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    /* Hide standard desktop text navigation on narrow screens to prevent overflow */
+    .nav-links {
+        display: none; 
+    }
+
+    /* Show the hamburger toggle button */
     .nav-toggle {
         display: block;
     }
 
-    .nav-links {
-        display: flex;
-        gap: 1rem;
+    .header-actions {
+        gap: 0.8rem;
     }
 
-    .nav-links a {
-        font-size: 0.78rem;
+    .header-search input {
+        width: 90px;
     }
 
-    /* Mobile Category Drawer toggled exclusively by the hamburger button */
+    /* Mobile Category Drawer toggled exclusively by the hamburger */
     .mobile-category-drawer {
         display: none;
         position: absolute;
@@ -699,7 +713,7 @@ body {
         width: 100%;
         background-color: #ffffff;
         flex-direction: column;
-        padding: 1.2rem 2rem;
+        padding: 1.2rem 1.5rem;
         box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         border-bottom: 1px solid #eaeaea;
         z-index: 1000;
@@ -731,25 +745,23 @@ body {
     .footer-container {
         grid-template-columns: 1fr 1fr;
     }
+    
     .contact-container {
         grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 600px) {
-    .header-container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
     .brand-logo a {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+    
+    .tagline {
+        font-size: 0.55rem;
     }
 
-    .header-search input {
-        width: 110px;
+    .header-search {
+        display: none; /* Hide search bar on ultra-small screens to keep icons & hamburger pristine */
     }
 
     .footer-container {
