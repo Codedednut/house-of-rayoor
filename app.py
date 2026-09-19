@@ -136,6 +136,11 @@ def bespoke():
     all_items = get_all_catalog_items()
     return render_template('bespoke.html', items=all_items or [])
 
+import os
+import resend
+
+resend.api_key = os.getenv("RESEND_API_KEY")
+
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
@@ -145,20 +150,19 @@ def contact():
         message_body = request.form.get('message', '')
 
         try:
-            msg = Message(
-                subject=f"New Contact Inquiry from {name}",
-                sender=app.config['MAIL_USERNAME'],
-                recipients=['belloayoola71@gmail.com']
-            )
-            msg.body = f"Full Name: {name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{message_body}"
-            mail.send(msg)
+            params = {
+                "from": "onboarding@resend.dev",
+                "to": ["belloayoola71@gmail.com"],
+                "subject": f"New Contact Inquiry from {name}",
+                "html": f"<p><b>Full Name:</b> {name}</p><p><b>Email:</b> {email}</p><p><b>Phone:</b> {phone}</p><p><b>Message:</b><br>{message_body}</p>"
+            }
+            resend.Emails.send(params)
             flash("Thank you! Your message has been sent successfully.", "success")
         except Exception as e:
             flash("There was an issue sending your message. Please try again later.", "danger")
             print(f"Mail Error: {e}")
 
         return redirect(url_for('contact'))
-
     return render_template('contact.html')
 
 if __name__ == '__main__':
