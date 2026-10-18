@@ -1,10 +1,3 @@
-
-import sys
-print("Forcing server crash")
-sys.exit(1)
-
-
-
 import os
 from flask import Flask, render_template, request, flash, redirect, url_for 
 from flask_mail import Mail, Message
@@ -109,9 +102,7 @@ def get_hero_slides():
 
 @app.route('/')
 def home():
-    query = request.args.get('q', '').strip().lower()
-    all_items = get_all_catalog_items()
-    slides = get_hero_slides()
+    raise Exception("Site temporarily offline")
 
     if query:
         filtered_items = [
