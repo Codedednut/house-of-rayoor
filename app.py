@@ -102,7 +102,7 @@ def get_hero_slides():
 
 @app.route('/')
 def home():
-
+    query = request.args.get('q', '').strip()
     if query:
         filtered_items = [
             item for item in all_items
@@ -112,7 +112,6 @@ def home():
         filtered_items = all_items
 
     return render_template('index.html', items=filtered_items or [], slides=slides or [], search_query=query or '')
-
 @app.route('/collection')
 def collection():
     query = request.args.get('q', '').strip().lower()
