@@ -102,7 +102,6 @@ def get_hero_slides():
 
 @app.route('/')
 def home():
-    raise Exception("Site temporarily offline")
 
     if query:
         filtered_items = [
