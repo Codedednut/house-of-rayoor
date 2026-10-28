@@ -104,6 +104,7 @@ def get_hero_slides():
 def home():
     query = request.args.get('q', '').strip()
     all_items = get_all_catalog_items()
+    slides = get_hero_slides()
 
     if query:
         filtered_items = [
@@ -135,7 +136,6 @@ def bespoke():
     all_items = get_all_catalog_items()
     return render_template('bespoke.html', items=all_items or [])
 
-import os
 import resend
 
 resend.api_key = os.getenv("RESEND_API_KEY")
