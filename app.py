@@ -103,6 +103,7 @@ def get_hero_slides():
 @app.route('/')
 def home():
     query = request.args.get('q', '').strip()
+    items_to_filter = globals().get('all_items', PRODUCTS_CATALOG)
     if query:
         filtered_items = [
             item for item in all_items
