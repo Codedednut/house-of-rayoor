@@ -103,16 +103,18 @@ def get_hero_slides():
 @app.route('/')
 def home():
     query = request.args.get('q', '').strip()
-    items_to_filter = globals().get('all_items', PRODUCTS_CATALOG)
+    all_items = get_all_catalog_items()
+
     if query:
         filtered_items = [
             item for item in all_items
-            if query in item['title'].lower() or query in item['category'].lower()
+            if query.lower() in item['title'].lower() or query.lower() in item['category'].lower()
         ]
     else:
         filtered_items = all_items
 
     return render_template('index.html', items=filtered_items or [], slides=slides or [], search_query=query or '')
+
 @app.route('/collection')
 def collection():
     query = request.args.get('q', '').strip().lower()
